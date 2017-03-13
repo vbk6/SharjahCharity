@@ -1,6 +1,5 @@
 package com.example.vishnubk.sharjahcharity.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
@@ -11,19 +10,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.example.vishnubk.sharjahcharity.Fragments.ItemAFragment;
 import com.example.vishnubk.sharjahcharity.Fragments.ItemBFragment;
@@ -33,13 +26,12 @@ import com.example.vishnubk.sharjahcharity.R;
 
 import java.io.File;
 
-import me.relex.circleindicator.CircleIndicator;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    ViewPager viewFlipper;
+    //ViewPager viewFlipper;
     ViewPager viewPager;
-    SwipeAdapter adapter;
+    //SwipeAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +44,11 @@ public class MainActivity extends AppCompatActivity
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_projects));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_sms));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        viewFlipper = (ViewPager)findViewById(R.id.flipper);
-        adapter = new SwipeAdapter(this);
-        viewFlipper.setAdapter(adapter);
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        viewFlipper = (ViewPager)findViewById(R.id.flipper);
+//        adapter = new SwipeAdapter(this);
+//        viewFlipper.setAdapter(adapter);
+
+        //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -77,6 +70,8 @@ public class MainActivity extends AppCompatActivity
                 (getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
+        //viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        //viewFlipper.setPageTransformer(true, new ZoomOutPageTransformer());
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -94,8 +89,10 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-        indicator.setViewPager(viewFlipper);
+//        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
+//        indicator.setViewPager(viewFlipper);
+
+
     }
     private Boolean exit = false;
     @Override
@@ -111,13 +108,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -209,42 +206,42 @@ public class MainActivity extends AppCompatActivity
     }
 
 //Image slider adapter.
-    public class SwipeAdapter extends PagerAdapter {
-
-        private int[] images = {R.drawable.charity,R.drawable.charity2,R.drawable.charity3};
-        private Context ctx;
-        private LayoutInflater inflater;
-
-        public SwipeAdapter(Context ctx){
-            this.ctx = ctx;
-        }
-
-        @Override
-        public int getCount() {
-            return images.length;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return (view ==(LinearLayout)object);
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = inflater.inflate(R.layout.swipe,container,false);
-            ImageView img =(ImageView)v.findViewById(R.id.imageView);
-
-            img.setImageResource(images[position]);
-            img.setScaleType(ImageView.ScaleType.FIT_XY);
-            container.addView(v);
-            return v;
-        }
-
-        @Override
-        public void destroyItem(View container, int position, Object object) {
-            container.refreshDrawableState();
-        }
-    }
+//    public class SwipeAdapter extends PagerAdapter {
+//
+//        private int[] images = {R.drawable.charity,R.drawable.charity2,R.drawable.charity3};
+//        private Context ctx;
+//        private LayoutInflater inflater;
+//
+//        public SwipeAdapter(Context ctx){
+//            this.ctx = ctx;
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return images.length;
+//        }
+//
+//        @Override
+//        public boolean isViewFromObject(View view, Object object) {
+//            return (view ==(LinearLayout)object);
+//        }
+//
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//            inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            View v = inflater.inflate(R.layout.swipe,container,false);
+//            ImageView img =(ImageView)v.findViewById(R.id.imageView);
+//
+//            img.setImageResource(images[position]);
+//            img.setScaleType(ImageView.ScaleType.FIT_XY);
+//            container.addView(v);
+//            return v;
+//        }
+//
+//        @Override
+//        public void destroyItem(View container, int position, Object object) {
+//            container.refreshDrawableState();
+//        }
+//    }
 
 }
